@@ -12,8 +12,8 @@ export default {
       const bot = new Bot(env.BOT_TOKEN);
 
       // Set up basic bot commands
-      bot.command("start", (ctx) => {
-        ctx.reply(
+      bot.command("start", async (ctx) => {
+        await ctx.reply(
           "Hello! I'm a Telegram bot running on Cloudflare Workers using grammY! 🤖\n\n" +
           "Available commands:\n" +
           "/start - Show this message\n" +
@@ -22,12 +22,12 @@ export default {
         );
       });
 
-      bot.command("ping", (ctx) => {
-        ctx.reply("Pong! 🏓");
+      bot.command("ping", async (ctx) => {
+        await ctx.reply("Pong! 🏓");
       });
 
-      bot.command("help", (ctx) => {
-        ctx.reply(
+      bot.command("help", async (ctx) => {
+        await ctx.reply(
           "This is a simple Telegram bot built with grammY and running on Cloudflare Workers.\n\n" +
           "Commands:\n" +
           "/start - Welcome message\n" +
@@ -37,14 +37,9 @@ export default {
       });
 
       // Handle any text message
-      bot.on("message:text", (ctx) => {
+      bot.on("message:text", async (ctx) => {
         const text = ctx.message.text;
-        ctx.reply(`You said: "${text}"`);
-      });
-
-      // Error handling
-      bot.catch((err) => {
-        console.error("Bot error:", err);
+        await ctx.reply(`You said: "${text}"`);
       });
 
       // Create webhook callback for Cloudflare Workers

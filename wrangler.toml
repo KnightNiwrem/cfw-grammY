@@ -1,6 +1,6 @@
 name = "cfw-grammy"
 main = "dist/index.js"
-compatibility_date = "2023-10-25"
+compatibility_date = "2025-05-31"
 
 [vars]
 # Add your bot token here or set it as a secret

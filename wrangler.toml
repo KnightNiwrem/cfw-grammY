@@ -1,0 +1,12 @@
+name = "cfw-grammy"
+main = "dist/index.js"
+compatibility_date = "2025-05-31"
+
+[vars]
+# Add your bot token here or set it as a secret
+# BOT_TOKEN = "your_bot_token_here"
+
+[[kv_namespaces]]
+binding = "BOT_DATA"
+id = "your_kv_namespace_id"
+preview_id = "your_preview_kv_namespace_id"

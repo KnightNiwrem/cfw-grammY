@@ -7,6 +7,5 @@ compatibility_date = "2025-05-31"
 # BOT_TOKEN = "your_bot_token_here"
 
 [[kv_namespaces]]
-binding = "BOT_DATA"
-id = "your_kv_namespace_id"
-preview_id = "your_preview_kv_namespace_id"
+binding = "your_kv_namespace_id"
+id = "a3c0b24ae49947058012be4e85083a16"

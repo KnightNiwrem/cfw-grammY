@@ -36,7 +36,12 @@ test("the bundled Worker handles commands and persists per-chat KV sessions", as
     replies.push(reply);
     return Response.json({
       ok: true,
-      result: { message_id: 2, date: 0, chat: { id: reply.chat_id, type: "private" }, ...reply },
+      result: {
+        message_id: 2,
+        date: 0,
+        chat: { id: reply.chat_id, type: "private" },
+        ...reply,
+      },
     });
   });
 
@@ -59,7 +64,15 @@ test("the bundled Worker handles commands and persists per-chat KV sessions", as
       from: { id: chatId, is_bot: false, first_name: "Test" },
       text,
       ...(text.startsWith("/")
-        ? { entities: [{ type: "bot_command", offset: 0, length: text.split(" ")[0].length }] }
+        ? {
+            entities: [
+              {
+                type: "bot_command",
+                offset: 0,
+                length: text.split(" ")[0].length,
+              },
+            ],
+          }
         : {}),
     };
     const response = await worker.fetch(

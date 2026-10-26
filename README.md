@@ -54,15 +54,19 @@ npm run dev
 
 Wrangler builds directly from `src/index.ts`, so no separate build is needed. The local endpoint is `http://localhost:8787`. Telegram requires a publicly reachable HTTPS webhook; use an HTTPS tunnel to forward requests to your local endpoint when testing with Telegram.
 
-Check types, create a deployment bundle without publishing it, or run the bot smoke test:
+Run the project checks or create a deployment bundle without publishing it:
 
 ```bash
+npm run fmt:check
+npm run lint
 npm run typecheck
 npm run build
 npm test
 ```
 
 `build` checks types and writes the bundle to `dist/`. The tests exercise the bundled Worker with mocked Telegram API responses and do not require real credentials.
+
+Run `npm run fmt` to apply formatting. GitHub Actions runs formatting, lint, type checks, and tests on pull requests and pushes to `main` or `master`, using the Node.js version in `.nvmrc`.
 
 `wrangler dev` uses local KV storage for the `BOT_DATA` binding, so you can develop before creating a remote namespace. Local data is kept under `.wrangler/` and is separate from production data. The tests use an in-memory KV mock to check session persistence and isolation between chats.
 
@@ -102,7 +106,7 @@ curl -X POST "https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook" \
 ## Bot Commands
 
 - `/start` - Welcome message and available commands
-- `/ping` - Test if the bot is responsive  
+- `/ping` - Test if the bot is responsive
 - `/help` - Show help information
 - `/language [code]` - View or save a language preference for this chat, for example `/language de`
 

@@ -21,20 +21,22 @@ export default {
       const bot = new Bot<BotContext>(env.BOT_TOKEN);
 
       // Load and save per-chat state only when a handler accesses ctx.session.
-      bot.use(lazySession({
-        initial: (): SessionData => ({ language: "en" }),
-        storage: new KvAdapter<SessionData>(env.BOT_DATA),
-      }));
+      bot.use(
+        lazySession({
+          initial: (): SessionData => ({ language: "en" }),
+          storage: new KvAdapter<SessionData>(env.BOT_DATA),
+        }),
+      );
 
       // Set up basic bot commands
       bot.command("start", async (ctx) => {
         await ctx.reply(
           "Hello! I'm a Telegram bot running on Cloudflare Workers using grammY! 🤖\n\n" +
-          "Available commands:\n" +
-          "/start - Show this message\n" +
-          "/ping - Ping the bot\n" +
-          "/help - Show help information\n" +
-          "/language [code] - View or set the chat's language preference"
+            "Available commands:\n" +
+            "/start - Show this message\n" +
+            "/ping - Ping the bot\n" +
+            "/help - Show help information\n" +
+            "/language [code] - View or set the chat's language preference",
         );
       });
 
@@ -45,11 +47,11 @@ export default {
       bot.command("help", async (ctx) => {
         await ctx.reply(
           "This is a simple Telegram bot built with grammY and running on Cloudflare Workers.\n\n" +
-          "Commands:\n" +
-          "/start - Welcome message\n" +
-          "/ping - Test if the bot is responsive\n" +
-          "/help - This help message\n" +
-          "/language [code] - View or set the chat's language preference"
+            "Commands:\n" +
+            "/start - Welcome message\n" +
+            "/ping - Test if the bot is responsive\n" +
+            "/help - This help message\n" +
+            "/language [code] - View or set the chat's language preference",
         );
       });
 

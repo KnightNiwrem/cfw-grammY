@@ -1,11 +1,10 @@
 name = "cfw-grammy"
-main = "dist/index.js"
-compatibility_date = "2025-05-31"
+main = "src/index.ts"
+compatibility_date = "2026-10-26"
 
-[vars]
-# Add your bot token here or set it as a secret
-# BOT_TOKEN = "your_bot_token_here"
+# Store BOT_TOKEN in .dev.vars locally and as a Worker secret in production.
 
 [[kv_namespaces]]
-binding = "your_kv_namespace_id"
-id = "a3c0b24ae49947058012be4e85083a16"
+binding = "BOT_DATA"
+# Replace with your own namespace ID before deploying (see README).
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"

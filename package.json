@@ -2,22 +2,41 @@
   "name": "cfw-grammy",
   "version": "1.0.0",
   "description": "A Cloudflare Worker Telegram bot using grammY",
-  "main": "dist/index.js",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^24.22.1 || >=26.12.1"
+  },
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cf-typegen": "wrangler types",
+    "typecheck": "npm run cf-typegen && tsc --noEmit",
+    "build": "npm run typecheck && wrangler deploy --dry-run --outdir dist",
+    "test": "npm run build && node --test"
   },
-  "keywords": ["cloudflare", "worker", "telegram", "bot", "grammy"],
+  "keywords": [
+    "cloudflare",
+    "worker",
+    "telegram",
+    "bot",
+    "grammy"
+  ],
   "author": "KnightNiwrem",
   "license": "MIT",
   "dependencies": {
-    "grammy": "^1.21.1"
+    "@grammyjs/storage-cloudflare": "2.4.2",
+    "grammy": "^1.46.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250531.0",
-    "typescript": "^5.8.3",
-    "wrangler": "^4.18.0"
+    "@cloudflare/workers-types": "^5.20261026.1",
+    "@types/node": "^24.19.2",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.152.0"
+  },
+  "overrides": {
+    "miniflare": {
+      "undici": "7.30.1"
+    }
   }
 }
